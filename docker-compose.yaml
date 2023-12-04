@@ -1,0 +1,20 @@
+version: "3"
+services:
+  localstack:
+    image: localstack/localstack:3.0
+    environment:
+      SERVICES: sns,sqs,s3
+      AWS_DEFAULT_REGION: us-west-2
+      TOPIC_NAME: ${TOPIC_NAME-}
+      QUEUE_NAME: ${QUEUE_NAME-}
+    ports:
+      - "4566:4566"
+    volumes:
+      - ./localstack/setup-resources.sh:/etc/localstack/init/ready.d/init-aws.sh
+    healthcheck:
+      test: 'curl --silent --fail localstack:4566/health | grep -E ''"sns": "(running|available)"'' | grep -E ''"sqs": "(running|available)"'''
+      interval: 20s
+      retries: 5
+      start_period: 20s
+      timeout: 10s
+    
