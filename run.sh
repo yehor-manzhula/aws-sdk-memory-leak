@@ -11,6 +11,4 @@ CURRENT_PROCESS_PID=$$
 echo "Application will start with PID: $CURRENT_PROCESS_PID"
 echo "To generate heap snapshot perform: kill -USR2 $CURRENT_PROCESS_PID"
 
-export NODE_OPTIONS="--max-old-space-size=64"
-
-exec node --heapsnapshot-signal=SIGUSR2 --trace-gc $1
+exec node --max-old-space-size=64 --heapsnapshot-signal=SIGUSR2 --inspect --trace-gc $1

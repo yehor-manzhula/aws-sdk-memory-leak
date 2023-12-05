@@ -10,7 +10,7 @@ const { ReceiveMessageCommand, SQSClient } = require('@aws-sdk/client-sqs');
         region: 'us-west-2',
         credentials: {
             accessKeyId: 'TEST',
-            secretAccessKey: 'TEST',
+            secretAccessKey: 'TEST', 
         },
     });
 
@@ -31,7 +31,7 @@ const { ReceiveMessageCommand, SQSClient } = require('@aws-sdk/client-sqs');
                 clearTimeout(pollingTimeoutId);
             }
 
-            pollingTimeoutId = setTimeout(() => poll(), 500);
+            pollingTimeoutId = setTimeout(() => poll(), 0);
         });
     };
 

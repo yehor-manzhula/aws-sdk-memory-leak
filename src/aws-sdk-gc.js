@@ -38,7 +38,7 @@ const gc = runInNewContext('gc');
                 clearTimeout(pollingTimeoutId);
             }
 
-            pollingTimeoutId = setTimeout(() => poll(), 500);
+            pollingTimeoutId = setTimeout(poll, 0);
 
             gc();
         });
